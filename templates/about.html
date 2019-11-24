@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends "frame.html" %}
 
-    <a href="/templates/fakebook">fakebook</a>
-      <a href="/templates/about">about</a>
-    <a href="/templates/portfolio">portfolio</a>
-     <a href="/templates/index">index</a>
+{% block title %}
+    about
+{% endblock title %}
 
+{% block css %}
+    <link rel="stylesheet" href="/static/css/index.css">
+{% endblock css %}
 
-</head>
-<body>
-
+{% block content %}
+    <body>
+<p> About meeeeee</p>
 </body>
-</html>
+
+{% endblock content %}
+
+
+
+
+

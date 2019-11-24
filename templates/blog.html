@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+{% extends "frame.html" %}
 
-</head>
-<body>
+{% block title %}
+    blog
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/index.css">
+{% endblock css %}
+
+{% block content %}
+    <body>
 <h1>Super Receipe blog</h1>
 {% for receipe in receipes %}
 <div class="card" style="width: 18rem;">
@@ -23,4 +24,4 @@
 {% endfor %}
 
 </body>
-</html>
+{% endblock content %}

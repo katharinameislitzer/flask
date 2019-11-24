@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends "frame.html" %}
 
+{% block title %}
+portfolio
+{% endblock title %}
 
-    <a href="/fakebook">fakebook</a>
-      <a href="/about">about</a>
-    <a href="/portfolio">portfolio</a>
-     <a href="/index">index</a>
-    <a href="/secret_number_game">secret number game</a>
+{% block css %}
+<link rel="stylesheet" href="/static/css/index.css">
+{% endblock css %}
+
+{% block content %}
+<a href="/fakebook">fakebook</a>
+<a href="/about">about</a>
+<a href="/portfolio">portfolio</a>
+<a href="/index">index</a>
+<a href="/secret_number_game">secret number game</a>
 </head>
 <body>
 
 </body>
-</html>
+{% endblock content %}
