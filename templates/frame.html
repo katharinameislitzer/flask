@@ -36,22 +36,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/about">About<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href={{url_for('about')}}>About<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/books">Books</a>
+                <a class="nav-link" href={{url_for('books')}}>Books</a>
+            </li>
+             <li class="nav-item active">
+                <a class="nav-link" href="https://dashboard.heroku.com/apps/katmeis">Heroku<span class="sr-only">(current)</span></a>
+            </li>
+               <li class="nav-item active">
+                <a class="nav-link" href="https://github.com/katharinameislitzer">Github<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/portfolio" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href={{url_for('portfolio')}} id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Portfolio
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/fakebook">Fakebook</a>
-                    <a class="dropdown-item" href="/secret_number_game">Secret number game</a>
-                    <a class="dropdown-item" href="/katzensalon">Katzensalon</a>
+                    <a class="dropdown-item" href={{url_for('fakebook')}}>Fakebook</a>
+                    <a class="dropdown-item" href={{url_for('secret_number_game')}}>Secret number game</a>
+                    <a class="dropdown-item" href={{url_for('katzensalon')}}>Katzensalon</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/blog">Blog</a>
+                    <a class="dropdown-item" href={{url_for('blog')}}>Blog</a>
                 </div>
             </li>
         </ul>
