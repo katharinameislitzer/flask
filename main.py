@@ -3,6 +3,7 @@ import random
 import model
 import string
 
+from flask import request
 from flask import url_for
 
 N_USERS = 10
@@ -11,6 +12,7 @@ N_BOOKS = 10
 
 app = flask.Flask(__name__)
 db = model.db
+
 db.create_all()
 
 
@@ -113,19 +115,105 @@ def secret_number_game():
 
 @app.route("/blog")
 def blog():
-    db_receipes = db.query(model.Receipe).filter_by(taste="sweet")
+    db_receipes = db.query(model.Receipe).filter_by(taste="sweet").all()
     return flask.render_template("blog.html", receipes=db_receipes)
 
+@app.route("/books_add", methods=["GET", "POST"])
+def books_add():
+
+    current_request = flask.request
+
+    if current_request.method == "GET":
+        return flask.render_template("books_add.html")
+
+    elif current_request.method == "POST":
+        # TODO: add valid book
+        title = current_request.form.get('title')
+        author = current_request.form.get('author')
+        description = current_request.form.get('description')
+        title_exists = db.query(model.Book).filter_by(title=title).first()
+        author_exists = db.query(model.Book).filter_by(author=author).first()
+        if title_exists:
+            print("Title already exists")
+        elif author_exists:
+            print("Author already exists")
+        else:
+            new_book = model.Book(title=title, author=author, description=description)
+            db.add(new_book)
+            db.commit()
+            return flask.redirect(flask.url_for('books_add'))
 
 @app.route("/books")
 def books():
-    db_books = db.query(model.Book).filter_by(title="It")
-    return flask.render_template("books.html", books=db_books)
+    all_books = db.query(model.Book).all()
+    return flask.render_template("books.html", books=all_books)
+
+@app.route("/books/<book_title>/books_delete", methods=["GET", "POST"])
+def books_delete(book_title):
+    book_to_delete = db.query(model.Book).get(book_title)
+    if book_to_delete is None:
+        return flask.redirect(flask.url_for('books'))
+
+    current_request = flask.request
+    if current_request.method == "GET":
+        return flask.render_template("books_delete.html", book=book_to_delete)
+    elif current_request.method=="POST":
+        db.delete(book_to_delete)
+        db.commit()
+        return flask.redirect(flask.url_for('books'))
+    else:
+        return flask.redirect(flask.url_for('books'))
 
 
 @app.route("/katzensalon")
 def katzensalon():
     return flask.render_template("katzensalon.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+
+    current_request = flask.request
+
+    if current_request.method == "GET":
+        return flask.render_template("register.html")
+
+    elif current_request.method == "POST":
+        # TODO: register valid user
+        email = current_request.form.get('email')
+        username = current_request.form.get('username')
+        user_exists = db.query(model.User).filter_by(username=username).first()
+        email_exists = db.query(model.User).filter_by(email=email).first()
+        if user_exists:
+            print("User already exists")
+        elif email_exists:
+            print("Email already exists")
+        else:
+            new_user = model.User(username=username, email=email)
+            db.add(new_user)
+            db.commit()
+            return flask.redirect(flask.url_for('register'))
+
+
+@app.route("/accounts")
+def accounts():
+    all_users = db.query(model.User).all()
+    return flask.render_template('accounts.html', accounts=all_users)
+
+@app.route("/accounts/<account_id>/account_delete", methods=["GET", "POST"])
+def account_delete(account_id):
+    user_to_delete = db.query(model.User).get(account_id)
+    if user_to_delete is None:
+        return flask.redirect(flask.url_for('accounts'))
+
+    current_request = flask.request
+    if current_request.method == "GET":
+        return flask.render_template("account_delete.html", account=user_to_delete)
+    elif current_request.method=="POST":
+        db.delete(user_to_delete)
+        db.commit()
+        return flask.redirect(flask.url_for('accounts'))
+    else:
+        return flask.redirect(flask.url_for('accounts'))
 
 
 if __name__ == '__main__':
