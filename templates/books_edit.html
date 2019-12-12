@@ -1,0 +1,42 @@
+{% extends "frame.html" %}
+
+{% block title %}
+book edit
+{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block content %}
+<h1>Edit Book</h1>
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input name="title"
+               value="{{book.title}}"
+               type="text"
+               class="form-control"
+               id="exampleFormControlInput1"
+               placeholder="Book title">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput2">Author</label>
+        <input name="author"
+               value="{{book.author}}"
+               type="text"
+               class="form-control"
+               id="exampleFormControlInput2"
+               placeholder="First Name Last Name">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control"
+                  name="description"
+                  id="exampleFormControlTextarea1"
+                  rows="3">{{book.description}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock content %}

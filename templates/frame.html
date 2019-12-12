@@ -9,6 +9,8 @@
     </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     {% block css %}
     {% endblock css %}
 
@@ -27,7 +29,7 @@
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Home</a>
+    <i class="fa fa-home"></i><a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,17 +40,23 @@
             <li class="nav-item active">
                 <a class="nav-link" href={{url_for('about')}}>About<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href={{url_for('books')}}>Books</a>
             </li>
-             <li class="nav-item">
+             <li class="nav-item active">
                 <a class="nav-link" href={{url_for('books_add')}}>Add Books</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href={{url_for('logout')}}>Logout</a>
             </li>
              <li class="nav-item active">
                 <a class="nav-link" href="https://dashboard.heroku.com/apps/katmeis">Heroku<span class="sr-only">(current)</span></a>
             </li>
                <li class="nav-item active">
                 <a class="nav-link" href="https://github.com/katharinameislitzer">Github<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href={{url_for('login')}}>Login<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href={{url_for('portfolio')}} id="navbarDropdown" role="button" data-toggle="dropdown"
