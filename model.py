@@ -4,7 +4,10 @@ import os
 # SQLITE_FILE = ':memory:'
 SQLITE_FILE = 'localhost.sqlite'
 
+
+
 db = sqla_wrapper.SQLAlchemy(os.getenv("DATABASE_URL", f"sqlite:///{SQLITE_FILE}"))
+db = sqla_wrapper.SQLAlchemy("postgres://ihrjaqphsudkfb:548a06250244aacae612ff7be72a57fae7ce0983d829850d6c259b1cc911afc3@ec2-46-137-187-23.eu-west-1.compute.amazonaws.com:5432/d47t7li5vvl594")
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
