@@ -1,0 +1,31 @@
+{% extends "frame.html" %}
+
+{% block title %}
+Weather {{weather_info.city_name}}, {{weather_info.country}}
+{% endblock title %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+
+<h1>Weather Page for {{weather_info.city_name}}, {{weather_info.country}}</h1>
+<ul>
+    <li>Temperature: {{weather_info.temp_C}} C</li>
+    <li>Wind Speed: {{weather_info.wind_speed}}</li>
+    <li>Wind Direction: {{weather_info.wind_deg}}</li>
+</ul>
+
+<h2>Check other cities</h2>
+<ul>
+    <li><a href="/weather/london">London</a></li>
+    <li><a href="/weather/paris">Paris</a></li>
+    <li><a href="/weather/vienna">Vienna</a></li>
+    <li><a href="/weather/tokyo">Tokyo</a></li>
+    <li><a href="/weather/new+york">New York</a></li>
+
+</ul>
+
+
+{% endblock content %}
